@@ -1,4 +1,3 @@
-
 class ApiFeatures {
   constructor(query, queryString) {
     this.query = query;
@@ -12,7 +11,8 @@ class ApiFeatures {
 
     // 1B) Advanced filtering
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/(gte|gt|lte|lt)/g, (match) => "$"+match);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => "$" + match);
+
     const searchInput = JSON.parse(queryStr) || {};
 
     const search = Object.keys(searchInput).map((key) => {
@@ -57,7 +57,7 @@ class ApiFeatures {
   }
 
   paginate() {
-    if(this.queryString.page == -1) return this
+    if (this.queryString.page == -1) return this;
     const page = this.queryString.page * 1 || 1;
     const limit = this.queryString.limit * 1 || 100;
     const skip = (page - 1) * limit;
