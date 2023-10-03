@@ -1,4 +1,3 @@
-import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,11 +8,15 @@ import { EditPen as EditPenIcon } from "../../icons/editPen";
 import DynamicModal from "./DynamicModal";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import ConfirmDialog from "../admin/ConfirmDialog";
+import { useState } from "react";
 
 export default function DynamicMenu({ item, model }) {
   const { t } = useTranslation();
-  const [openModal, setOpenModal] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openMenu, setOpenMenu] = useState(false);
+
   const open = Boolean(anchorEl);
   const handleClickMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,14 +29,6 @@ export default function DynamicMenu({ item, model }) {
 
   const handleOpenMenu = () => {
     setOpenModal(true);
-  };
-
-  const handleDelete = () => {
-    if (window.confirm(t("delete_this"))) {
-      // removeOne(item);
-    } else {
-      return;
-    }
   };
 
   return (
@@ -70,19 +65,15 @@ export default function DynamicMenu({ item, model }) {
       >
         <MenuItem onClick={handleOpenMenu}>
           <EditPenIcon fontSize="small" />
-          &nbsp; {t("edit")}
+          &nbsp; {t("Edit")}
         </MenuItem>
         <MenuItem>
-          <Link href={{ pathname: `/${model}/${item._id}` }}>
-            <p style={{ color: "#000", textDecoration: "none" }}>
-              <ShowIcon fontSize="small" />
-              &nbsp; {t("show")}
-            </p>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleDelete}>
-          <DeleteIcon fontSize="small" />
-          &nbsp; {t("delete")}
+          <ConfirmDialog
+            model={model}
+            id={item._id}
+            setOpen={setOpenMenu}
+            open={openMenu}
+          />
         </MenuItem>
       </Menu>
     </>

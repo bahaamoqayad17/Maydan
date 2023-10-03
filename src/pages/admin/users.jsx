@@ -14,21 +14,39 @@ import { Search } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import DashboardLayout from "@/components/admin/DashboardLayout";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "@/store/UserSlice";
 const Page = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const { users, loading, count } = useSelector((state) => state.users);
   const getPagination = (page, limit) => {
     page++;
+    dispatch(fetchUsers({ page, limit }));
   };
+
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModel = () => {
     setOpenModal(true);
   };
 
+  const search = (e) => {
+    const value = e.target.value;
+    if (e.key === "Enter") {
+      if (value) {
+        dispatch(fetchUsers({ name: value }));
+      } else {
+        dispatch(fetchUsers());
+      }
+    }
+  };
+
   return (
     <>
       <Head>
-        <title>{`${process.env.APP_NAME} | Products`}</title>
+        <title>{`${process.env.APP_NAME} | Users`}</title>
       </Head>
       <Box
         component="main"
@@ -49,22 +67,22 @@ const Page = () => {
               }}
             >
               <Typography sx={{ m: 1 }} variant="h3">
-                {t("all_products")}
+                {t("All Users")}
               </Typography>
               <Box sx={{ m: 1 }}>
                 <DynamicModal
                   setOpenModal={setOpenModal}
                   open={openModal}
-                  model="products"
+                  model="users"
                 />
 
-                <Button
+                {/* <Button
                   onClick={handleOpenModel}
                   color="primary"
                   variant="contained"
                 >
-                  {t("add_product")}
-                </Button>
+                  {t("Add User")}
+                </Button> */}
               </Box>
             </Box>
             <Box sx={{ mt: 3 }}>
@@ -82,7 +100,7 @@ const Page = () => {
                           </InputAdornment>
                         ),
                       }}
-                      placeholder={t("search_products")}
+                      placeholder={t("Search Users")}
                       variant="outlined"
                     />
                   </Box>
@@ -93,8 +111,10 @@ const Page = () => {
           <Box sx={{ mt: 3 }}>
             <DataTable
               getPagination={getPagination}
-              count={5}
-              model={"products"}
+              count={count}
+              items={users}
+              loading={loading}
+              model={"users"}
             />
           </Box>
         </Container>

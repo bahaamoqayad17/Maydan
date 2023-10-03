@@ -7,9 +7,14 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { ChartBar as ChartBarIcon } from "../../icons/chart-bar";
-import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import NavItem from "./NavItem";
 import Image from "next/image";
+import CategoryIcon from "@mui/icons-material/Category";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import BusinessIcon from "@mui/icons-material/Business";
+import MarkAsUnreadIcon from "@mui/icons-material/MarkAsUnread";
+import AdsClickIcon from "@mui/icons-material/AdsClick";
+
 const items = [
   {
     href: "/admin/",
@@ -17,9 +22,29 @@ const items = [
     title: "Dashboard",
   },
   {
-    href: "/admin/products",
-    icon: <ProductionQuantityLimitsIcon fontSize="small" />,
-    title: "products",
+    href: "/admin/categories",
+    icon: <CategoryIcon fontSize="small" />,
+    title: "Categories",
+  },
+  {
+    href: "/admin/users",
+    icon: <PeopleAltIcon fontSize="small" />,
+    title: "Users",
+  },
+  {
+    href: "/admin/campanies",
+    icon: <BusinessIcon fontSize="small" />,
+    title: "Campaines",
+  },
+  {
+    href: "/admin/messages",
+    icon: <MarkAsUnreadIcon fontSize="small" />,
+    title: "Messages",
+  },
+  {
+    href: "/admin/ads",
+    icon: <AdsClickIcon fontSize="small" />,
+    title: "Advertisements",
   },
 ];
 

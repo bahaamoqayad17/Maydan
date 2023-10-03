@@ -54,7 +54,7 @@ export default function Navbar(props) {
             <MenuIcon fontSize="small" />
           </IconButton>
           <Box sx={{ flexGrow: 1 }} />
-          <LangMenu />
+          {/* <LangMenu /> */}
           <Box>
             <Avatar
               onClick={() => setOpenAccountPopover(true)}

@@ -64,7 +64,11 @@ export default function DataTable({
                     {t(header)}
                   </TableCell>
                 ))}
-                <TableCell>{t("actions")}</TableCell>
+                {model === "messages" || model === "ads" ? (
+                  ""
+                ) : (
+                  <TableCell>{t("actions")}</TableCell>
+                )}
               </TableRow>
             </TableHead>
             {loading ? (
@@ -88,9 +92,14 @@ export default function DataTable({
                         {getFieldValue(item, field)}
                       </TableCell>
                     ))}
-                    <TableCell>
-                      <DynamicMenu model={model} item={item} />
-                    </TableCell>
+
+                    {model === "messages" || model === "ads" ? (
+                      ""
+                    ) : (
+                      <TableCell>
+                        <DynamicMenu model={model} item={item} />
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
               </TableBody>

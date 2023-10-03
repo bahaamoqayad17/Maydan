@@ -11,10 +11,13 @@ import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import LangMenu from "@/components/admin/LangMenu";
+import { useDispatch } from "react-redux";
+import { login } from "@/store/AuthSlice";
 
 const Page = () => {
   const { t } = useTranslation();
   const [item, setItem] = useState({});
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setItem({ ...item, [e.target.name]: e.target.value });
@@ -22,7 +25,7 @@ const Page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("login");
+    dispatch(login({ ...item, fcm_token: "" }));
   };
 
   return (
@@ -82,7 +85,7 @@ const Page = () => {
                     sx={{ my: 2 }}
                   >
                     <p style={{ margin: 0 }}>{t("welcome")}</p>
-                    <LangMenu />
+                    {/* <LangMenu /> */}
                   </Box>
                 </Typography>
                 <Typography
