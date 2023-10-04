@@ -1,11 +1,11 @@
 const factory = require("./FactoryHandler");
 const Application = require("../Models/Application");
-const CatchAsync = require("../utils/CatchAsync");
+const CatchAsync = require("../Utils/CatchAsync");
 const multer = require("multer");
 const fs = require("fs");
 const Ad = require("../Models/Ad");
 const admin = require("firebase-admin");
-const AppError = require("../utils/AppError");
+const AppError = require("../Utils/AppError");
 const db = admin.firestore();
 
 exports.index = factory.index(Application);

@@ -1,6 +1,6 @@
 const factory = require("./FactoryHandler");
 const User = require("../Models/User");
-const CatchAsync = require("../utils/CatchAsync");
+const CatchAsync = require("../Utils/CatchAsync");
 const multer = require("multer");
 const fs = require("fs");
 const admin = require("firebase-admin");
