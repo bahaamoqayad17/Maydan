@@ -21,6 +21,15 @@ const Schema = mongoose.Schema(
       ref: "Ad",
       required: [true, "Please provide an ad"],
     },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: [true, "Please provide a user"],
+    },
+    status: {
+      type: Number,
+      default: 0, // 0 => pending , 1 => accepted , 2 => rejected
+    },
   },
   { timestamps: true }
 );

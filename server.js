@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
+const admin = require("firebase-admin");
+
+const serviceAccount = require("./maydan-ce0df-firebase-adminsdk-p1aau-ebfbd3c400.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
 process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT EXCEPTION! 💥 Shutting down...");
   console.log(err.name, err.message);

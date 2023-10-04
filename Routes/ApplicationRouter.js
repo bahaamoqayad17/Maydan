@@ -1,17 +1,30 @@
 const express = require("express");
 const ApplicationController = require("../Controllers/ApplicationController");
+const AuthController = require("../Controllers/AuthController");
 
 const router = express.Router();
+
+router.use(AuthController.protect);
+
+router.post("/updateStatus", ApplicationController.updateStatus);
 
 router
   .route("/")
   .get(ApplicationController.index)
-  .post(ApplicationController.create);
+  .post(
+    ApplicationController.uploadFile,
+    ApplicationController.savePDF,
+    ApplicationController.create
+  );
 
 router
   .route("/:id")
   .get(ApplicationController.show)
-  .put(ApplicationController.update)
+  .put(
+    ApplicationController.uploadFile,
+    ApplicationController.savePDF,
+    ApplicationController.update
+  )
   .delete(ApplicationController.delete);
 
 module.exports = router;

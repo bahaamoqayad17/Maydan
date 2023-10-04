@@ -6,9 +6,17 @@ const router = express.Router();
 
 router.use(AuthController.protect);
 
+router.delete("/deleteMe", UserController.deleteMe);
+router.get("/notifications", UserController.notifications);
+
 router.route("/").get(UserController.index).post(UserController.create);
 
-router.delete("/deleteMe", UserController.deleteMe);
+router.post(
+  "/updateMe",
+  UserController.uploadFile,
+  UserController.saveFile,
+  UserController.updateMe
+);
 
 router
   .route("/:id")
