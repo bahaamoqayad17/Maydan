@@ -2,7 +2,7 @@
 const nextConfig = {
   env: {
     APP_NAME: "Maydan",
-    API_URL: "http://ewavechart.com:4041/api/",
+    API_URL: "http://ewaveonline.com:4041/api/",
   },
   reactStrictMode: true,
 };
