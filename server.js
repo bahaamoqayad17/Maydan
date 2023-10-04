@@ -24,9 +24,12 @@ const DB = process.env.DATABASE.replace(
 );
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-  })
+  .connect(
+    "mongodb+srv://Maydan:cEGTA3UbUcmFQJzT@maydan.edatvha.mongodb.net/Maydan",
+    {
+      useNewUrlParser: true,
+    }
+  )
   .then(() => console.log("DB connection successful!"));
 
 const port = process.env.PORT || 4000;
