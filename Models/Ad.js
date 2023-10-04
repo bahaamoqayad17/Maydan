@@ -11,9 +11,10 @@ const Schema = mongoose.Schema(
       type: String,
       required: [true, "Please provide a title"],
     },
-    user: {
+    company: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
+      required: [true, "Please provide a Company"],
     },
   },
   { timestamps: true }
